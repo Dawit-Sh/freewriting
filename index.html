@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freewrite</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" id="favicon" type="image/png" href="freewriting.png" />
+</head>
+<body>
+
+  <!-- ── Setup Screen ─────────────────────────────────────── -->
+  <div id="setup-screen" class="screen active">
+    <div class="setup-card">
+      <h1 class="logo">freewrite</h1>
+      <p class="tagline">Set a timer. Start writing. Don't stop.</p>
+
+      <div class="duration-presets">
+        <button class="preset" data-minutes="5">5 min</button>
+        <button class="preset" data-minutes="10">10 min</button>
+        <button class="preset active" data-minutes="15">15 min</button>
+        <button class="preset" data-minutes="25">25 min</button>
+        <button class="preset" data-minutes="30">30 min</button>
+      </div>
+
+      <div class="custom-row">
+        <label for="custom-input">or enter minutes:</label>
+        <input id="custom-input" type="number" min="1" max="180" placeholder="e.g. 20" />
+      </div>
+
+      <button id="start-btn" class="start-btn">Start Writing</button>
+    </div>
+  </div>
+
+  <!-- ── Writing Screen ────────────────────────────────────── -->
+  <div id="writing-screen" class="screen">
+    <div id="progress-bar" class="progress-bar"></div>
+    <div id="hud" class="hud">
+      <span id="timer-display" class="timer-display">00:00</span>
+      <span id="paused-badge" class="paused-badge hidden">PAUSED — return to resume</span>
+    </div>
+    <textarea
+      id="editor"
+      class="editor"
+      spellcheck="true"
+      placeholder="Start typing…"
+      autofocus
+    ></textarea>
+    <div id="bottom-bar" class="bottom-bar">
+      <span id="word-count">0 words</span>
+      <button id="give-up-btn" class="give-up-btn" title="End session early">finish early</button>
+    </div>
+  </div>
+
+  <!-- ── Done Screen ───────────────────────────────────────── -->
+  <div id="done-screen" class="screen">
+    <div class="done-card">
+      <div class="done-icon">✓</div>
+      <h2 id="done-title">Time's up!</h2>
+      <div class="done-stats">
+        <div class="stat">
+          <span class="stat-value" id="stat-words">0</span>
+          <span class="stat-label">words</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-duration">0m</span>
+          <span class="stat-label">session</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="stat-wpm">0</span>
+          <span class="stat-label">wpm</span>
+        </div>
+      </div>
+      <div class="done-preview-wrap">
+        <textarea id="done-preview" class="done-preview" readonly></textarea>
+      </div>
+      <div class="done-actions">
+        <button id="copy-btn" class="action-btn">Copy text</button>
+        <button id="download-btn" class="action-btn">Download .txt</button>
+        <button id="new-session-btn" class="action-btn primary">New session</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
