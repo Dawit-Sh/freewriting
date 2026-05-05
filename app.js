@@ -332,8 +332,11 @@ downloadBtn.addEventListener('click', () => {
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   const ts   = new Date().toISOString().slice(0, 10);
+  const elapsed   = state.totalSeconds - state.remaining;
+  const elapsedMin = Math.round(elapsed / 60);
+  const timeStr = elapsedMin >= 60 ? `${Math.floor(elapsedMin / 60)}h${elapsedMin % 60 > 0 ? elapsedMin % 60 + 'm' : ''}` : `${elapsedMin}m`;
   a.href     = url;
-  a.download = `freewrite-${ts}.txt`;
+  a.download = `${ts}-freewriting-session-${timeStr}.txt`;
   a.click();
   URL.revokeObjectURL(url);
 });
